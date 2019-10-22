@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Login</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	</head>
+	<body>
+	    <div class="container">
+    		<div class="row ">
+    		    <div class="col-xs-1 col-sm-2 col-md-3 col-lg-4"></div>
+        		<div class="col-xs-10 col-sm-8 col-md-6 col-lg-4">
+            		<h1>Chat App</h1>
+            		<form method="post" action="auth">
+                		<div class="form-group">
+                    		<% if (error) { %>
+                    		<div class="text-danger" style="width: 90%;margin:5%;"><%= error %></div>
+                    		<% } %>
+                    		<% if (errors.nickName) { %>
+                    		<div class="text-danger" style="width: 90%;margin:5%;"><%= errors.nickName.msg %></div>
+                    		<% } %>
+                    		<% if (errors.passCode) { %>
+                    		<div class="text-danger" style="width: 90%;margin:5%;"><%= errors.passCode.msg %></div>
+                    		<% } %>
+                    		<input type="text" class="form-control" style="width: 90%;margin:5%;" id="nickName" name="nickName" placeholder="NickName" required>
+                    		<input type="password" class="form-control" style="width: 90%;margin:5%;" id="passCode" name="passCode" placeholder="PassCode" required>
+                    		<button type="submit" class="btn" style="width: 90%;margin:5%;">Log in</button>
+                    		<center><a href="register" >Create an account</a></center>
+                		</div>
+            		</form>
+    		    </div>
+    		</div>
+    	</div>
+	</body>
+</html>

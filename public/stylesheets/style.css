@@ -1,0 +1,303 @@
+/* ベース部分 */
+.base_view {
+  padding:0;
+  background: #729dda;
+  overflow: hidden;
+  margin: 20px auto;
+  font-size: 80%;
+}
+
+/* タイトル部分 */
+.base_view .title {
+  background: #1b313f;
+  padding: 10px;
+  text-align: center;
+  font-size: 150%;
+  color: white;
+}
+
+/* 会話部分 */
+.base_view .contents{
+  padding: 10px;
+  overflow: hidden;
+  line-height: 135%;
+}
+  
+.base_view .scroll {
+  height: 400px;
+  overflow-y: scroll;
+}
+  
+/* 自分の会話 */
+.base_view .myText {
+  position: relative;
+  display: block;
+  margin: 5px 0;
+  max-width: 75%;
+  float: right;
+  margin-right: 15px;
+  clear: both;
+}
+
+/* 会話文 自分用*/
+.base_view .myText .text {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #81da45;
+  margin: 0;
+  margin-left: 80px;
+}
+
+/* 吹き出し 自分用*/
+.base_view .myText .text::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  right: -10px;
+  top: 10px;
+  border-left: 20px solid #81da45;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+ 
+/* 時刻　自分用 */
+.base_view .myText .date {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100px;
+  text-align: right;
+  left: -30px;
+  bottom: 0px;
+  font-size: 80%;
+  color: white;
+  top: 14px;
+}
+
+.base_view .myText .imageDate {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100px;
+  text-align: right;
+  left: -30px;
+  bottom: 0px;
+  font-size: 80%;
+  color: white;
+  top: 112px;
+}
+.base_view .myText .imageData {
+  padding: 10px;
+  margin: 0;
+  margin-left: 80px;
+}
+.base_view .myText .textImageDate {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100px;
+  text-align: right;
+  left: -30px;
+  bottom: 0px;
+  font-size: 80%;
+  color: white;
+  top: 150px;
+}
+
+
+ /* 相手の会話 */
+.base_view .flText {
+  width: 100%;
+  position: relative;
+  display: block;
+  margin-bottom: 5px;
+  max-width: calc(100% - 120px);;
+  clear: both;
+}
+
+/* アイコン */
+.base_view .flText figure {
+  width: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* 丸く切り抜く */
+.base_view .flText figure img{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+/* テキスト　相手用 */
+.base_view .flText .flText-text {
+  float: left;
+  margin-left: 70px;
+}
+
+.base_view .flText .flText-text .name {
+  font-size: 80%;
+  color: white;
+}
+
+/* 会話文　相手用 */
+.base_view .flText .text {
+  margin: 0;
+  position: relative;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+
+/* 吹き出し　相手用 */
+.base_view .flText .text::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 20;
+  height: 0;
+  left: -10px;
+  top: 10px;
+  border-right: 20px solid white;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+/* 時刻　相手用 */
+.base_view .flText .date {
+  content: '';
+  position: relative;
+  display: block;
+  width: 100px;
+  text-align: left;
+  top: -20px;
+  left: 100%;
+  bottom: 0px;
+  font-size: 80%;
+  color: white;
+  margin-left: 10px;
+
+}
+.base_view .flText .imageDate {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100px;
+  text-align: left;
+  bottom: 0px;
+  font-size: 80%;
+  color: white;
+  top: 112px;
+  margin-left: 150px;
+  margin-top: -5px;
+}
+.base_view .flText .imageData {
+  padding-bottom: 35px;
+  margin: 0;
+ 
+}
+.base_view .flText .textImageDate {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100px;
+  text-align: left;
+  left: -30px;
+  bottom: 0px;
+  font-size: 80%;
+  color: white;
+  top: 150px;
+}
+
+.form-group {
+background-color: white;
+}
+.register-form {
+width: 300px;
+margin: 0 auto;
+font-family: Tahoma, Geneva, sans-serif;
+}
+.register-form h1 {
+text-align: center;
+color: #81da45;
+font-size: 24px;
+padding: 20px 0 20px 0;
+}
+.register-form input[type="password"],
+.register-form input[type="text"] {
+width: 100%;
+padding: 15px;
+border: 1px solid #dddddd;
+margin-bottom: 15px;
+box-sizing:border-box;
+}
+.register-form input[type="submit"] {
+width: 100%;
+padding: 15px;
+background-color: #81da45;
+border: 0;
+box-sizing: border-box;
+cursor: pointer;
+font-weight: bold;
+color: #ffffff;
+}
+
+
+h1 {
+text-align: center;
+color: #81da45;
+font-size: 24px;
+padding: 20px 0 20px 0;
+font-family: Tahoma, Geneva, sans-serif;
+font-weight: bold;
+}
+
+.btn {
+background-color: #b1b5c1;
+border: 0;
+box-sizing: border-box;
+cursor: pointer;
+font-weight: bold;
+color: #ffffff;
+}
+
+.rgst {
+width: 50%;
+}
+.user-list {
+text-align: center;
+padding: 1.75rem 1.25rem;
+}
+.list-group-item {
+background: #b1b5c1;
+padding: 10px;
+text-align: center;
+font-size: 150%;
+color: white;
+padding: 1.75rem 1.25rem;
+
+}
+h1 {
+text-align: center;
+color: #81da45;
+font-size: 24px;
+padding: 20px 0 20px 0;
+font-family: Tahoma, Geneva, sans-serif;
+font-weight: bold;
+}
+th{
+font-size: large;
+text-align: center;
+padding: 1.75rem;
+}
+td{
+font-size: large;
+text-align: left;
+padding: 1.75rem;
+}

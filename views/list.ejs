@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <title>List</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+		    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            	<table class="table" name="user-list-table">
+                	<thead class="thead-light">
+                        <tr>
+                            <th colspan="2" style="background-color:#1b313f;color:#ffffff">
+                                Friends 
+                                <a href="/logout"><i class="fa fa-sign-out" style="float:right;color:white" aria-hidden="true"></i></a>
+                            </th>
+                        </tr>
+    	            </thead>
+                	<tbody>
+       	                <% if (listUsers) { for(var i=0; i < listUsers.length; i++) { %>
+                    	    <tr>
+        		                <td width="60pv">
+        		                    <% if (listUsers[i].userImage) { %>
+                            		    <img src="data:image/png;base64,<%= listUsers[i].userImage %>" class="image" id="image-frame" height="50pv" width="50px"yle="border-radius: 100%;"/>
+        		                    <% } else {%>
+                            		    <img src="/images/defaultFace.png" class="image" id="image-frame" height="50pv" width="50pv" style="border-radius: 100%;"/>
+                            		<% }%>
+                        		</td>
+        		                <td  style="vertical-align:middle;">
+        		                    <a  href="/chat?id=<%= listUsers[i].id %>"><%= listUsers[i].nickName %> さん </a>
+                    		    </td>
+                        	</tr>
+                    	<% } }%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+</script>
+</html>

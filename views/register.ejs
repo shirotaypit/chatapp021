@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Register</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+   	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<form method="post" action="save" name="register-form" id="register-form">
+        	<div class="form-group">
+        	    <div class="container">
+            		<div class="row ">
+            		    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    		<h1>Chat App</h1>
+                    	</div>
+                	</div>
+                	
+            		<div class="row">
+            		    <div class="                  col-md-2 col-lg-3"></div>
+    		            <div class="col-xs-8 col-sm-8 col-md-5 col-lg-4">
+                    		<label for="nickName" class="col-form-label">NickName</label>
+                    		<input type="text" class="form-control" id="nickName" name ="nickName" placeholder="Nickname"  maxlength="12" required>
+                    		<% if (errors.nickName) { %>
+                		    <div class="text-danger"><%= errors.nickName.msg %></div>
+                    		<% } %>
+                    		<label for="passCode" class="col-form-label">PassCode</label>
+                    		<input type="password" class="form-control" id="passCode" name="passCode" placeholder="Passcode" maxlength="12" required>
+                    		<% if (errors.passCode) { %>
+                    		<div class="text-danger"><%= errors.passCode.msg %></div>
+                    		<% } %>
+                        </div>
+                        
+    		            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                    		<label for="FaceIcon" class="col-form-label">FaceIcon</label>
+                    		<img src="/images/defaultFace.png" class="image" id="image-frame" height="50pv" width="50pv"/>
+                    		<input id="imageFile" type="file" style="visibility:hidden" name="imageFile"/>
+                    		<input type="button" style="width: 100%;" value="Change" onclick="$('#imageFile').click();" class="btn" name="imagePath"/>
+                        	<input id="b64" name="ufile" type="hidden" value=""/>
+                    		<div class="text-danger" id="error"></div>
+                        </div>
+            		</div>
+    
+            		<div class="row">
+            		    <div class="                    col-md-2 col-lg-3"></div>
+            		    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
+            		        </br>
+                    		<button type="submit" style="width: 100%;" class="btn rgst">Create</button>
+                    	</div>
+                	</div>
+            	</div>
+            </div>
+		</form>
+    </body>
+	<script>
+   /*$("#imageFile").change(function(){
+        readURL(this);
+    });
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+			console.log(e.target.result);
+                $('#imgsrc').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }*/
+	showImage(true);
+	var targetfile = null;
+	$("#imageFile").onchange = function(evt){
+	$("#error").innerHTML = '';
+		showImage(true);
+		var files = evt.target.files;
+		if(files.length == 0) return;
+		targetFile = files[0];
+		console.log(targetFile);
+		if(!targetFile.type.match(/image/)) {
+		$("#error").innerHTML ='Select Image File';
+			return;
+		}
+			
+		if(targetFile.size > 35000){
+		$("#error").innerHTML ='Image file size should be less than 35KB';
+			return;
+		}
+		var breader = new FileReader();
+	    breader.onload = readPNGFile;
+		breader.readAsBinaryString(targetFile);
+	}
+	
+	function readPNGFile(evt) {
+		var bin = evt.target.result;
+		var sig = String.fromCharCode( 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a);
+		var head = bin.substr(0, 8);
+		if(sig != head) {
+			$("#error").innerHTML ="Image file type should be PNG";
+			return;
+		}
+		showImage(true);
+		var width = getBinValue(bin, 8 + 0x08, 4);
+		var height = getBinValue(bin, 8 + 0x0c, 4);
+		var depth = bin.charCodeAt(8 + 0x10);
+		
+		/*$("#info").innerHTML =
+			"width: " + width + "px<br>" +
+			"height: " + height + "px<br>" +
+			"depth: " + depth + "bit";*/
+		var reader = new FileReader();
+		reader.onload = function(e) {
+		console.log(reader);
+			$("#image-frame").src = reader.result;
+			$("#b64").value=reader.result;
+		}
+		reader.readAsDataURL(targetFile)
+	}
+	
+	function getBinValue(bin, i, size) {
+		var v = 0;
+		for(var j= 0; j < size; j++){
+			var b = bin.charCodeAt(i + j);
+			v = (v << 8) + b;
+		}
+		return v;
+	}
+	
+	function showImage(b) {
+		var val = b ? "block" : "none";
+		//$("#upbtn").style.display = val;
+		console.log("val",val);
+		$("#image-frame").style.display = val;
+		//$("#info").style.display = val;
+	}
+	
+	function $(id) {
+		return document.querySelector(id);
+	}
+</script>
+</html>
